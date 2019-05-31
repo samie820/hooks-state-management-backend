@@ -9,7 +9,7 @@
     },
     "repository": {
       "type": "git",
-      "url": "git+https://github.com/narenaryan/node-jwt-integ.git"
+      "url": "git+https://github.com/samie820/hooks-state-management-backend.git"
     },
     "keywords": [
       "node",
@@ -19,9 +19,9 @@
     "author": "Omole Samuel",
     "license": "ISC",
     "bugs": {
-      "url": "https://github.com/narenaryan/node-jwt-integ/issues"
+      "url": "https://github.com/samie820/hooks-state-management-backend/issues"
     },
-    "homepage": "https://github.com/narenaryan/node-jwt-integ#readme",
+    "homepage": "https://github.com/samie820/hooks-state-management-backend",
     "devDependencies": {
       "eslint": "^5.4.0",
       "eslint-config-standard": "^11.0.0",
