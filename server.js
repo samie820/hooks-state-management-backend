@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 let jwt = require('jsonwebtoken');
 let config = require('./config/index.js');
 let middleware = require('./middlewares/authMiddleware');
+const songs = require('./models/Song');
 
 class HandlerGenerator {
   login (req, res) {
@@ -26,13 +27,13 @@ class HandlerGenerator {
           token: token
         });
       } else {
-        res.send(403).json({
+        res.status(401).json({
           success: false,
           message: 'Incorrect username or password'
         });
       }
     } else {
-      res.send(400).json({
+      res.status(400).json({
         success: false,
         message: 'Authentication failed! Please check the request'
       });
@@ -43,6 +44,10 @@ class HandlerGenerator {
       success: true,
       message: 'Index page'
     });
+  }
+
+  getSongs (req, res) {
+    res.json(songs);
   }
 }
 
@@ -56,8 +61,8 @@ function main () {
   }));
   app.use(bodyParser.json());
   // Routes & Handlers
-  app.post('/login', handlers.login);
-  app.get('/', middleware.checkToken, handlers.index);
+  app.post('/api/login', handlers.login);
+  app.get('/api/', middleware.checkToken, handlers.index);
   app.listen(port, () => console.log(`Server is listening on port: ${port}`));
 }
 
