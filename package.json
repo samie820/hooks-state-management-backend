@@ -1,38 +1,39 @@
 {
-    "name": "state-management-with-hooks",
-    "version": "1.0.0",
-    "description": "The backend server for the state management with hooks article",
-    "main": "server.js",
-    "scripts": {
-      "start": "node server.js",
-      "test": "echo \"Error: no test specified\" && exit 1",
-      "debug": "node --inspect-brk server.js"
-    },
-    "repository": {
-      "type": "git",
-      "url": "git+https://github.com/samie820/hooks-state-management-backend.git"
-    },
-    "keywords": [
-      "node",
-      "jwt",
-      "auth"
-    ],
-    "author": "Omole Samuel",
-    "license": "ISC",
-    "bugs": {
-      "url": "https://github.com/samie820/hooks-state-management-backend/issues"
-    },
-    "homepage": "https://github.com/samie820/hooks-state-management-backend",
-    "devDependencies": {
-      "eslint": "^5.4.0",
-      "eslint-config-standard": "^11.0.0",
-      "eslint-plugin-import": "^2.14.0",
-      "eslint-plugin-node": "^7.0.1",
-      "eslint-plugin-promise": "^4.0.0",
-      "eslint-plugin-standard": "^3.1.0"
-    },
-    "dependencies": {
-      "express": "^4.16.3",
-      "jsonwebtoken": "^8.3.0"
-    }
+  "name": "state-management-with-hooks",
+  "version": "1.0.0",
+  "description": "The backend server for the state management with hooks article",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "debug": "node --inspect-brk server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/samie820/hooks-state-management-backend.git"
+  },
+  "keywords": [
+    "node",
+    "jwt",
+    "auth"
+  ],
+  "author": "Omole Samuel",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/samie820/hooks-state-management-backend/issues"
+  },
+  "homepage": "https://github.com/samie820/hooks-state-management-backend",
+  "devDependencies": {
+    "eslint": "^5.4.0",
+    "eslint-config-standard": "^11.0.0",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-node": "^7.0.1",
+    "eslint-plugin-promise": "^4.0.0",
+    "eslint-plugin-standard": "^3.1.0"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.16.3",
+    "jsonwebtoken": "^8.3.0"
   }
+}
