@@ -1,5 +1,5 @@
 # Hooks State Management Server
-This is the demo server that handles dummy authentication.
+This is the demo server that handles dummy authentication. Check out the live version on Heroku [here](https://hookedbe.herokuapp.com)
 
 # Getting Started
 These instructions should get you a copy of the project up and running on your local machine for development and testing purposes.
