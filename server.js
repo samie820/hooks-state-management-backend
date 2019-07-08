@@ -46,14 +46,27 @@ class HandlerGenerator {
     }
   }
   index (req, res) {
-    res.json({
+    return res.json({
       success: true,
       message: 'Index page'
     });
   }
 
   getSongs (req, res) {
-    res.json(songs);
+    return res.json(songs.reverse());
+  }
+
+  addSong (req, res) {
+    const song = {
+      id: songs.length + 1,
+      name: req.body.title,
+      albumArt: req.body.imageUrl,
+      artist: req.body.artist,
+      rating: 5
+    };
+
+    songs.push(song);
+    return res.status(201).json(song);
   }
 }
 
@@ -71,6 +84,7 @@ function main () {
   app.post('/api/login', handlers.login);
   app.get('/api/', middleware.checkToken, handlers.index);
   app.get('/api/songs', middleware.checkToken, handlers.getSongs);
+  app.post('/api/songs', middleware.checkToken, handlers.addSong);
   app.listen(port, () => console.log(`Server is listening on port: ${port}`));
 }
 
