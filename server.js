@@ -53,8 +53,7 @@ class HandlerGenerator {
   }
 
   getSongs (req, res) {
-    cosnt reversedSong = [...songs];
-    return res.json(reversedSong.reverse());
+    return res.json(songs);
   }
 
   addSong (req, res) {
