@@ -3,7 +3,6 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 let jwt = require('jsonwebtoken');
 let config = require('./config/index.js');
-let middleware = require('./middlewares/authMiddleware');
 const songs = require('./models/Song');
 
 class HandlerGenerator {
@@ -56,9 +55,18 @@ class HandlerGenerator {
     return res.json(songs);
   }
 
+  getOneSong (req, res) {
+    const { id } = req.params;
+    const songIndex = songs.findIndex(s => s.id == id);
+    console.log(songIndex);
+    if (songIndex === -1) return res.status(404).json({message: 'Song not found'});
+    const song = songs[songIndex];
+    return res.status(201).json(song);
+  }
+
   addSong (req, res) {
     const song = {
-      id: songs.length + 1,
+      id: songs[songs.length - 1].id + 1,
       name: req.body.title,
       albumArt: req.body.imageUrl,
       artist: req.body.artist,
@@ -67,6 +75,35 @@ class HandlerGenerator {
 
     songs.push(song);
     return res.status(201).json(song);
+  }
+
+  editSong (req, res) {
+    const { id } = req.params;
+    const songIndex = songs.findIndex(s => s.id == id);
+    console.log(songIndex);
+    if (songIndex === -1) return res.status(404).json({message: 'Song not found'});
+    const song = songs[songIndex];
+
+    const updatedSong = {
+      id: song.id,
+      name: req.body.title,
+      albumArt: req.body.imageUrl,
+      artist: req.body.artist,
+      rating: song.rating
+    };
+    songs[songIndex] = updatedSong;
+    return res.status(201).json(updatedSong);
+  };
+
+  deleteSong (req, res) {
+    const { id } = req.params;
+    const songIndex = songs.findIndex(s => s.id == id);
+    console.log(songIndex);
+    if (songIndex === -1) return res.status(404).json({message: 'Song not found'});
+    songs.splice(songIndex, 1);
+    return res.status(200).json({
+      message: 'Song deleted successfully'
+    });
   }
 }
 
@@ -81,10 +118,12 @@ function main () {
   }));
   app.use(bodyParser.json());
   // Routes & Handlers
-  app.post('/api/login', handlers.login);
-  app.get('/api/', middleware.checkToken, handlers.index);
-  app.get('/api/songs', middleware.checkToken, handlers.getSongs);
-  app.post('/api/songs', middleware.checkToken, handlers.addSong);
+  app.get('/api/', handlers.index);
+  app.get('/api/songs/:id', handlers.getOneSong);
+  app.get('/api/songs', handlers.getSongs);
+  app.post('/api/songs', handlers.addSong);
+  app.put('/api/songs/:id', handlers.editSong);
+  app.delete('/api/songs/:id', handlers.deleteSong);
   app.listen(port, () => console.log(`Server is listening on port: ${port}`));
 }
 
