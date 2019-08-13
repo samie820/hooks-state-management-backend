@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 let jwt = require('jsonwebtoken');
+const dateFns = require('date-fns/format');
 let config = require('./config/index.js');
 const songs = require('./models/Song');
 
@@ -70,7 +71,9 @@ class HandlerGenerator {
       name: req.body.title,
       albumArt: req.body.imageUrl,
       artist: req.body.artist,
-      rating: 5
+      rating: 5,
+      createdAt: dateFns(Date.now(), "YYYY-MM-ddTHH:mm:ss"),
+      updatedAt: dateFns(Date.now(), "YYYY-MM-ddTHH:mm:ss")
     };
 
     songs.push(song);
@@ -89,7 +92,9 @@ class HandlerGenerator {
       name: req.body.title,
       albumArt: req.body.imageUrl,
       artist: req.body.artist,
-      rating: song.rating
+      rating: song.rating,
+      createdAt: song.createdAt,
+      updatedAt: dateFns(Date.now(), "YYYY-MM-ddTHH:mm:ss")
     };
     songs[songIndex] = updatedSong;
     return res.status(201).json(updatedSong);
