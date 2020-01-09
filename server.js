@@ -23,7 +23,7 @@ class HandlerGenerator {
           }
         );
         // return the JWT token for the future API calls
-        res.json({
+        return res.json({
           success: true,
           message: 'Authentication successful!',
           token: token,
@@ -33,13 +33,13 @@ class HandlerGenerator {
           }
         });
       } else {
-        res.status(401).json({
+        return res.status(401).json({
           success: false,
           message: 'Incorrect username or password'
         });
       }
     } else {
-      res.status(400).json({
+      return res.status(400).json({
         success: false,
         message: 'Authentication failed! Please check the request'
       });
@@ -55,6 +55,13 @@ class HandlerGenerator {
   getSongs (req, res) {
     res.json(songs);
   }
+
+  welcome (req, res) {
+    res.json({
+      success: true,
+      message: 'Hooks tutorial backend API'
+    });
+  }
 }
 
 // Starting point of the server
@@ -69,8 +76,9 @@ function main () {
   app.use(bodyParser.json());
   // Routes & Handlers
   app.post('/api/login', handlers.login);
-  app.get('/api/', middleware.checkToken, handlers.index);
   app.get('/api/songs', middleware.checkToken, handlers.getSongs);
+  app.get('/api/', middleware.checkToken, handlers.index);
+  app.get('/', handlers.welcome);
   app.listen(port, () => console.log(`Server is listening on port: ${port}`));
 }
 
