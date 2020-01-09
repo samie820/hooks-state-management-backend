@@ -7,7 +7,6 @@ let middleware = require('./middlewares/authMiddleware');
 const songs = require('./models/Song');
 const dateFns = require('date-fns/format');
 
-
 class HandlerGenerator {
   login (req, res) {
     let username = req.body.username;
@@ -133,7 +132,7 @@ function main () {
   }));
   app.use(bodyParser.json());
   // Routes & Handlers
-  app.post('/api/login', middleware.checkToken, handlers.login);
+  app.post('/api/login', handlers.login);
   app.get('/api/songs/:id', middleware.checkToken, handlers.getOneSong);
   app.put('/api/songs/:id', middleware.checkToken, handlers.editSong);
   app.delete('/api/songs/:id', middleware.checkToken, handlers.deleteSong);
