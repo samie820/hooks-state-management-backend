@@ -82,8 +82,8 @@ class HandlerGenerator {
       albumArt: req.body.imageUrl,
       artist: req.body.artist,
       rating: 5,
-      createdAt: dateFns(Date.now(), "YYYY-MM-ddTHH:mm:ss"),
-      updatedAt: dateFns(Date.now(), "YYYY-MM-ddTHH:mm:ss")
+      createdAt: dateFns(Date.now(), "yyyy-MM-dd'T'HH:mm:ss"),
+      updatedAt: dateFns(Date.now(), "yyyy-MM-dd'T'HH:mm:ss")
     };
 
     songs.push(song);
