@@ -103,7 +103,7 @@ class HandlerGenerator {
       artist: req.body.artist,
       rating: song.rating,
       createdAt: song.createdAt,
-      updatedAt: dateFns(Date.now(), "YYYY-MM-ddTHH:mm:ss")
+      updatedAt: dateFns(Date.now(), "yyyy-MM-ddTHH:mm:ss")
     };
     songs[songIndex] = updatedSong;
     return res.status(201).json(updatedSong);
